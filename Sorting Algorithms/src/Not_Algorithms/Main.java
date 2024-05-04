@@ -15,8 +15,11 @@ public class Main{
         
         Integer[] masterArray = new Integer[length];
         Integer[] fluidArray = new Integer[length];
+        int[] masterInt = new int[length];
+        int[] fluidInt = new int[length];
+        
         Utilities util = new Utilities();
-        util.FillInt(masterArray);
+        util.FillInt(masterArray, masterInt);
 
         
         System.out.println("Unsorted array:");
@@ -30,6 +33,9 @@ public class Main{
         util.SortNCheck(masterArray, fluidArray, new InsertionSort());
         
         util.SortNCheck(masterArray, fluidArray, new InPlaceMergeSort());
+        
+        
+        util.SortNCheck(masterInt, fluidInt, new RadixSort());
         
 
     }
