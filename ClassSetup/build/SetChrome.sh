@@ -23,10 +23,12 @@ H=$(( $SCREEN_HEIGHT - $TOPMARGIN - $TASKBAR))
 
 
 ADDR=$(wmctrl -l | ./GrabWindow "Google Chrome")
+PID=-1
 
 # If window doesn't exist, make a new one
 if [ -z "${ADDR}" ]; then
     google-chrome-stable &
+    PID=$!
 fi
 
 # Keep trying to get window name until window loads
@@ -38,3 +40,5 @@ done
 wmctrl -r "${ADDR}" -b remove,maximized_vert,maximized_horz && \
 wmctrl -r "${ADDR}" -e 0,$X,$Y,$W,$H 
 google-chrome https://www.uvic.ca/cas/login?service=https%3A%2F%2Fwww.uvic.ca%2Ftools%2Findex.php
+
+wait $PID

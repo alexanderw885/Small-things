@@ -12,7 +12,7 @@
 // Closes all processes that match the given names
 void ClosePrograms(char** names)
 {
-    for(int i = 0; i < 100000; i++)
+    for(int i = 0; i < 1000000; i++)
     {
         char filename[64];
         sprintf(filename, "/proc/%d/status", i);

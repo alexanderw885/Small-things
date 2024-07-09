@@ -21,10 +21,12 @@ W=$(( $SCREEN_WIDTH / 2 - $RIGHTMARGIN ))
 H=$(( $SCREEN_HEIGHT - $TASKBAR))
 
 ADDR=$(wmctrl -l | ./GrabWindow "Obsidian")
+PID=-1
 
 # If window does not exist, make a new one
 if [ -z "${ADDR}" ]; then
     obsidian &
+    PID=$!
 fi
 
 # Keep trying to grab window until it loads in
@@ -35,3 +37,5 @@ done
 # Resize window
 wmctrl -r "${ADDR}" -b remove,maximized_vert,maximized_horz && \
 wmctrl -r "${ADDR}" -e 0,$X,$Y,$W,$H
+
+wait $PID
