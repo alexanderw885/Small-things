@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
     char input[256];
     while(fgets(input, 256, stdin))
     {
-        if((strstr(input, argv[1]) == 0))
+        if((strstr(input, argv[1]) == NULL))
             continue;
         
         // String matches, need to remove uneeded content from beginning of string
