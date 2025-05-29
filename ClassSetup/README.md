@@ -1,6 +1,9 @@
 # Laptop Class Prep
-simple project designed to prepare my laptop for each class. This consists of two separate steps
-1. Exit unnecessary programs to save battery, notably Steam and Spotify
-2. Open Chrome and my notetaking program Obsidian, split screen, with Chrome on the Uvic login page
-
-This was done with multi-threading to simultaniously open any programs and close others in C, as well as some basic bash scripts for window management
+A basic bash script to open up the applications I need for class.
+To add/remove applications, add or remove function calls at the bottom of the script.
+The arguments needed are:
+- application name, case insensitive
+- X coordinate for top-left corner
+- Y coordinate for top-left corner
+- Width of the window
+- Height of the window

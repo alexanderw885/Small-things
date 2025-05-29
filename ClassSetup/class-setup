@@ -1,0 +1,33 @@
+#!/bin/bash
+
+manage_window() {
+    ADDR=$(grep -i $1 <<< "$(wmctrl -l)")
+    PID=-1
+
+    # If application isn't open, open it and grab address
+    if [ -z "$ADDR" ]; then
+        $1 &
+        PID=$!
+        echo "Created process with ID $PID"
+        while [ -z "$ADDR" ]; do 
+            ADDR=$(grep -i $1 <<< "$(wmctrl -l)")
+            sleep 0.02
+        done
+    fi
+
+    wmctrl -r $1 -b remove,maximized_vert,maximized_horz && \
+    wmctrl -r $1 -e 0,$2,$3,$4,$5
+}
+
+# -----------------------------------------------
+# ADD NEW WINDOWS HERE
+
+# Some windows work differently, requiring different arguments
+# to get the same result. Due to this, I manually specify
+# the X, Y, H, and Z values for each window.
+manage_window "obsidian" 0 0 $((1920 / 2)) 1030
+#manage_window "konsole" 0 36 960 993
+manage_window "firefox" 915 -45 1050 1120
+
+# Open a new tab in firefox to my university login
+firefox --new-tab https://www.uvic.ca/cas/login?service=https%3A%2F%2Fwww.uvic.ca%2Ftools%2Findex.php
